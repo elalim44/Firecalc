@@ -155,71 +155,77 @@
         let fireChartInstance = null;
 
         const translations = {
-            ar: {
-                dir: 'rtl',
-                langBtn: 'English',
-                heroTitle: 'متى ستصل إلى الحرية المالية وتترك وظيفتك؟',
-                heroSub: 'أدخل أرقامك الحالية لمعرفة تاريخ تقاعدك الدقيق ورقم ثروتك المستهدف بناءً على قاعدة الـ 4% العالمية.',
-                sponsorTag: 'موصى به',
-                sponsorText: 'استثمر فوائضك المالية في منصات مرخّصة لتحقيق عوائد تراكمية أسرع.',
-                sponsorBtn: 'ابدأ الاستثمار الآن',
-                inputHeader: 'بياناتك المالية',
-                lblAge: 'العمر الحالي (سنة)',
-                lblSavings: 'الادخار أو الاستثمار الشهري ($)',
-                lblNetworth: 'حجم مدخراتك/استثماراتك الحالية ($)',
-                lblExpenses: 'مصاريفك الشهرية المتوقعة عند الحرية ($)',
-                lblRoi: 'العائد السنوي المتوقع من الاستثمار (%)',
-                calcBtn: 'احسب خطتي الآن',
-                cardTargetTitle: 'رقم الحرية المالية المستهدف',
-                cardTargetSub: 'المبلغ الكافي لتعيش من عوائده للأبد',
-                cardTimeTitle: 'العمر المتوقع عند التقاعد',
-                cardTimeSub: 'تحتاج إلى {years} سنة للوصول',
-                unitYears: 'سنة',
-                chartTitle: 'نمو ثروتك التراكمي مقابل الهدف',
-                viralText: 'هل أعجبتك خطتك؟ شاركها وألهم أصدقاءك!',
-                viralBtn: '𝕏 شارك النتيجة',
-                upsellBadge: 'مُسرّع الحرية المالية',
-                upsellTitle: 'حمّل لوحة القيادة المالية الاحترافية الجاهزة (Excel & Notion)',
-                upsellDesc: 'أداة الحاسبة تعطيك الهدف فقط، لكن هذا القالب الجاهز صُمم ليتتبع ميزانيتك اليومية، مدخراتك، وصافي ثروتك تلقائياً للوصول لهدفك أسرع بـ 3 سنوات كاملة.',
-                upsellBtn: 'امتلك القالب الآن بـ $29 فقط',
-                footerText: 'الحسابات مبنية على نماذج رياضية تقديرية وقاعدة الـ 4% العالمية للتقاعد.',
-                chartLabelNet: 'صافي الثروة المتوقع',
-                chartLabelTarget: 'الرقم المستهدف',
-                never: 'أكثر من 50 سنة أو مستحيل بالأرقام الحالية'
-            },
-            en: {
-                dir: 'ltr',
-                langBtn: 'العربية',
-                heroTitle: 'When Will You Achieve Financial Freedom & Quit Your Job?',
-                heroSub: 'Enter your current numbers to discover your precise retirement date and target net worth based on the global 4% rule.',
-                sponsorTag: 'RECOMMENDED',
-                sponsorText: 'Invest your surplus capital in regulated platforms to compound your wealth faster.',
-                sponsorBtn: 'Start Investing Now',
-                inputHeader: 'Your Financial Metrics',
-                lblAge: 'Current Age (Years)',
-                lblSavings: 'Monthly Savings / Investment ($)',
-                lblNetworth: 'Current Net Worth ($)',
-                lblExpenses: 'Expected Monthly Expenses in Freedom ($)',
-                lblRoi: 'Expected Annual ROI (%)',
-                calcBtn: 'Calculate My Plan Now',
-                cardTargetTitle: 'Target Financial Freedom Number',
-                cardTargetSub: 'The buffer needed to live off compounding forever',
-                cardTimeTitle: 'Expected Retirement Age',
-                cardTimeSub: 'You need {years} years to reach it',
-                unitYears: 'Years old',
-                chartTitle: 'Your Cumulative Net Worth Growth vs Target',
-                viralText: 'Like your plan? Share it and inspire others!',
-                viralBtn: '𝕏 Share Result',
-                upsellBadge: 'FINANCIAL FREEDOM ACCELERATOR',
-                upsellTitle: 'Download the Ultimate Financial Dashboard (Excel & Notion)',
-                upsellDesc: 'The calculator gives you the goal. This pre-built automated sheet tracks daily budget, investments, and net worth to hit your target 3 years faster.',
-                upsellBtn: 'Get the Template Now for $29',
-                footerText: 'Calculations are mathematical estimations based on the global 4% safe withdrawal rate rule.',
-                chartLabelNet: 'Projected Net Worth',
-                chartLabelTarget: 'Target Number',
-                never: '50+ years or impossible with current inputs'
-            }
-        };
+    ar: {
+        dir: 'rtl',
+        langBtn: 'English',
+        heroTitle: 'متى ستصل إلى الحرية المالية وتترك وظيفتك؟',
+        heroSub: 'أدخل أرقامك الحالية لمعرفة تاريخ تقاعدك الدقيق ورقم ثروتك المستهدف بناءً على قاعدة الـ 4% العالمية.',
+        sponsorTag: 'موصى به',
+        sponsorText: 'استثمر فوائضك المالية في منصات مرخّصة لتحقيق عوائد تراكمية أسرع.',
+        sponsorBtn: 'ابدأ الاستثمار الآن',
+        inputHeader: 'بياناتك المالية',
+        lblAge: 'العمر الحالي (سنة)',
+        lblSavings: 'الادخار أو الاستثمار الشهري ($)',
+        lblNetworth: 'حجم مدخراتك/استثماراتك الحالية ($)',
+        lblExpenses: 'مصاريفك الشهرية المتوقعة عند الحرية ($)',
+        lblRoi: 'العائد السنوي المتوقع من الاستثمار (%)',
+        calcBtn: 'احسب خطتي الآن',
+        cardTargetTitle: 'رقم الحرية المالية المستهدف',
+        cardTargetSub: 'المبلغ الكافي لتعيش من عوائده للأبد',
+        cardTimeTitle: 'العمر المتوقع عند التقاعد',
+        cardTimeSub: 'تحتاج إلى {years} سنة للوصول',
+        unitYears: 'سنة',
+        chartTitle: 'نمو ثروتك التراكمي مقابل الهدف',
+        viralText: 'هل أعجبتك خطتك؟ شاركها وألهم أصدقاءك!',
+        viralBtn: '𝕏 شارك النتيجة',
+        footerText: 'الحسابات مبنية على نماذج رياضية تقديرية وقاعدة الـ 4% العالمية للتقاعد.',
+        chartLabelNet: 'صافي الثروة المتوقع',
+        chartLabelTarget: 'الرقم المستهدف',
+        never: 'أكثر من 50 سنة أو مستحيل بالأرقام الحالية',
+        // النصوص القانونية العربية
+        linkPrivacy: 'سياسة الخصوصية',
+        linkDisclaimer: 'إخلاء المسؤولية والإفصاح',
+        modalPrivacyTitle: 'سياسة الخصوصية وحماية البيانات',
+        modalPrivacyBody: '<p>نحن نحترم خصوصيتك. هذه الأداة تعمل محلياً بنسبة 100% على متصفحك. لا يتم تخزين أو نقل أي بيانات مالية تدخلها إلى خوادم خارجية.</p>',
+        modalDisclaimerTitle: 'الإفصاح المالي وإخلاء المسؤولية',
+        modalDisclaimerBody: '<p>هذه الأداة لأغراض تعليمية فقط. بعض الروابط هي روابط تابعة (Affiliate) قد نكسب منها عمولة لدعم استمرارية الموقع دون أي تكلفة إضافية عليك.</p>'
+    },
+    en: {
+        dir: 'ltr',
+        langBtn: 'العربية',
+        heroTitle: 'When Will You Achieve Financial Freedom & Quit Your Job?',
+        heroSub: 'Enter your current numbers to discover your precise retirement date based on the global 4% rule.',
+        sponsorTag: 'RECOMMENDED',
+        sponsorText: 'Invest your surplus capital in regulated platforms to compound your wealth faster.',
+        sponsorBtn: 'Start Investing Now',
+        inputHeader: 'Your Financial Metrics',
+        lblAge: 'Current Age (Years)',
+        lblSavings: 'Monthly Savings / Investment ($)',
+        lblNetworth: 'Current Net Worth ($)',
+        lblExpenses: 'Expected Monthly Expenses in Freedom ($)',
+        lblRoi: 'Expected Annual ROI (%)',
+        calcBtn: 'Calculate My Plan Now',
+        cardTargetTitle: 'Target Financial Freedom Number',
+        cardTargetSub: 'The buffer needed to live off compounding forever',
+        cardTimeTitle: 'Expected Retirement Age',
+        cardTimeSub: 'You need {years} years to reach it',
+        unitYears: 'Years old',
+        chartTitle: 'Your Cumulative Net Worth Growth vs Target',
+        viralText: 'Like your plan? Share it and inspire others!',
+        viralBtn: '𝕏 Share Result',
+        footerText: 'Calculations are mathematical estimations based on the global 4% safe withdrawal rate rule.',
+        chartLabelNet: 'Projected Net Worth',
+        chartLabelTarget: 'Target Number',
+        never: '50+ years or impossible',
+        // النصوص القانونية الإنجليزية
+        linkPrivacy: 'Privacy Policy',
+        linkDisclaimer: 'Disclaimer & Disclosure',
+        modalPrivacyTitle: 'Privacy Policy & Data Protection',
+        modalPrivacyBody: '<p>We respect your privacy. This tool runs 100% locally on your browser. No financial data is ever collected or stored.</p>',
+        modalDisclaimerTitle: 'Affiliate Disclosure & Disclaimer',
+        modalDisclaimerBody: '<p>For educational purposes only. Some links are affiliate links; we may earn a commission to keep this tool free for you at no extra cost.</p>'
+    }
+};
 
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
@@ -254,6 +260,12 @@
             document.getElementById('upsellDesc').innerText = t.upsellDesc;
             document.getElementById('upsellBtn').innerText = t.upsellBtn;
             document.getElementById('footerText').innerText = t.footerText;
+            document.getElementById('linkPrivacy').innerText = t.linkPrivacy;
+            document.getElementById('linkDisclaimer').innerText = t.linkDisclaimer;
+            document.getElementById('modalPrivacyTitle').innerText = t.modalPrivacyTitle;
+            document.getElementById('modalPrivacyBody').innerHTML = t.modalPrivacyBody;
+            document.getElementById('modalDisclaimerTitle').innerText = t.modalDisclaimerTitle;
+            document.getElementById('modalDisclaimerBody').innerHTML = t.modalDisclaimerBody;
 
             calculateFIRE();
         }
