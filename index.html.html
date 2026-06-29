@@ -372,5 +372,46 @@
             calculateFIRE();
         };
     </script>
+    <!-- ========================================== -->
+<!-- روابط الفوتر القانونية والنوافذ المنبثقة -->
+<!-- ========================================== -->
+<div class="flex justify-center space-x-6 space-x-reverse text-xs text-slate-400 mt-6 mb-4">
+    <button onclick="openModal('privacyModal')" class="hover:underline cursor-pointer" id="linkPrivacy">سياسة الخصوصية</button>
+    <span>|</span>
+    <button onclick="openModal('disclaimerModal')" class="hover:underline cursor-pointer" id="linkDisclaimer">إخلاء المسؤولية والإفصاح عن العمولات</button>
+</div>
+
+<!-- النافذة المنبثقة: سياسة الخصوصية -->
+<div id="privacyModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 shadow-2xl relative text-right">
+        <button onclick="closeModal('privacyModal')" class="absolute top-4 left-4 text-slate-400 hover:text-white font-bold text-xl cursor-pointer">✕</button>
+        <h3 class="text-xl font-bold mb-4 text-white" id="modalPrivacyTitle">سياسة الخصوصية (Privacy Policy)</h3>
+        <div class="text-sm text-slate-300 space-y-3 leading-relaxed" id="modalPrivacyBody">
+            <!-- النص القانوني يتم تحديثه تلقائياً -->
+        </div>
+    </div>
+</div>
+
+<!-- النافذة المنبثقة: إخلاء المسؤولية والإفصاح -->
+<div id="disclaimerModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-800 border border-slate-700 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 shadow-2xl relative text-right">
+        <button onclick="closeModal('disclaimerModal')" class="absolute top-4 left-4 text-slate-400 hover:text-white font-bold text-xl cursor-pointer">✕</button>
+        <h3 class="text-xl font-bold mb-4 text-white" id="modalDisclaimerTitle">إخلاء المسؤولية</h3>
+        <div class="text-sm text-slate-300 space-y-3 leading-relaxed" id="modalDisclaimerBody">
+            <!-- النص القانوني يتم تحديثه تلقائياً -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // دوال التحكم بفتح وإغلاق النوافذ المنبثقة
+    function openModal(id) {
+        document.getElementById(id).classList.remove('hidden');
+    }
+    function closeModal(id) {
+        document.getElementById(id).classList.add('hidden');
+    }
+</script>
+<!-- ========================================== -->
 </body>
 </html>
