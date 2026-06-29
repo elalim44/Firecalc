@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Optimization / محركات البحث -->
+    <title>حاسبة الحرية المالية والتقاعد المبكر الذكية | FIRE Calculator 2026</title>
+    <meta name="description" content="احسب ميعاد تقاعدك وحريتك المالية مجاناً. أداة تفاعلية متقدمة لحساب رقم الحرية المالية بناءً على قواعد الاستثمار العالمية وقاعدة 4%. Calculate your Financial Freedom and Early Retirement (FIRE) date.">
+    <meta name="keywords" content="حاسبة الحرية المالية, التقاعد المبكر, الحرية المالية, استثمار, FIRE Calculator, Early Retirement, Financial Freedom Calculator, حاسبة الاستثمار, سيو, كيف أتقاعد مبكراً">
+    
+    <!-- Open Graph for Social Media (Viral Sharing) -->
+    <meta property="og:title" content="حاسبة الحرية المالية والتقاعد المبكر - احسب مستقبلك الآن">
+    <meta property="og:description" content="اكتشف السنة والشهر الذي ستصل فيه إلى الحرية المالية وتتوقف عن العمل بناءً على مدخراتك وعوائد استثماراتك.">
+    <meta property="og:type" content="website">
+    
+    <!-- Tailwind CSS for Modern & Responsive UI -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Chart.js for Beautiful Graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap');
+        .lang-ar { font-family: 'Cairo', sans-serif; }
+        .lang-en { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen lang-ar transition-all duration-300">
+
+    <!-- Top Navigation / هيدر واختيار اللغة -->
+    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50 px-4 py-3">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2 space-x-reverse">
+                <span class="text-2xl font-bold bg-gradient-to-r from-emerald-400 to-teal-500 bg-clip-text text-transparent">FIRE⚡Calc</span>
+            </div>
+            <button id="langToggle" onclick="toggleLanguage()" class="px-4 py-1.5 rounded-full border border-slate-700 hover:bg-slate-800 text-sm font-semibold transition cursor-pointer">
+                English
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        
+        <!-- Hero Section / مقدمة جاذبة -->
+        <div class="text-center mb-12">
+            <h1 id="heroTitle" class="text-3xl md:text-5xl font-bold mb-4 text-white">متى ستصل إلى الحرية المالية وتترك وظيفتك؟</h1>
+            <p id="heroSub" class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto">أدخل أرقامك الحالية لمعرفة تاريخ تقاعدك الدقيق ورقم ثروتك المستهدف بناءً على قاعدة الـ 4% العالمية.</p>
+        </div>
+
+        <!-- Niche Sponsor Slot (Passive Income Source 1) / مساحة راعي مالي تلقائية -->
+        <div class="mb-10 p-4 bg-gradient-to-r from-slate-800 to-slate-850 rounded-xl border border-slate-700 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-right">
+            <div>
+                <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs px-2 py-0.5 rounded font-bold uppercase" id="sponsorTag">موصى به</span>
+                <p class="text-sm font-semibold mt-1 text-slate-200" id="sponsorText">استثمر فوائضك المالية في منصات مرخّصة لتحقيق عوائد تراكمية أسرع.</p>
+            </div>
+            <!-- استبدل الرابط التالي برابط الإحالة الخاص بك (Affiliate Link) -->
+            <a href="https://your-affiliate-link.com" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-5 py-2 rounded-lg text-sm transition shadow-lg shadow-emerald-500/10 cursor-pointer" id="sponsorBtn">ابدأ الاستثمار الآن</a>
+        </div>
+
+        <!-- Grid Layout for Inputs and Outputs -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- LEFT: Inputs Section (40% width on large screens) -->
+            <div class="lg:col-span-5 bg-slate-800/50 border border-slate-700/60 rounded-2xl p-6 shadow-xl">
+                <h2 class="text-xl font-bold mb-6 text-white pb-2 border-b border-slate-700" id="inputHeader">بياناتك المالية</h2>
+                
+                <div class="space-y-5">
+                    <!-- Current Age -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2" id="lblAge">العمر الحالي (سنة)</label>
+                        <input type="number" id="inpAge" value="30" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500 transition">
+                    </div>
+                    <!-- Monthly Savings -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2" id="lblSavings">الادخار أو الاستثمار الشهري ($)</label>
+                        <input type="number" id="inpSavings" value="1000" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500 transition">
+                    </div>
+                    <!-- Current Wealth -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2" id="lblNetworth">حجم مدخراتك/استثماراتك الحالية ($)</label>
+                        <input type="number" id="inpNetworth" value="10000" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500 transition">
+                    </div>
+                    <!-- Target Monthly Expenses -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2" id="lblExpenses">مصاريفك الشهرية المتوقعة عند الحرية ($)</label>
+                        <input type="number" id="inpExpenses" value="3000" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500 transition">
+                    </div>
+                    <!-- Expected Annual ROI -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2" id="lblRoi">العائد السنوي المتوقع من الاستثمار (%)</label>
+                        <input type="number" id="inpRoi" value="8" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500 transition">
+                    </div>
+
+                    <button onclick="calculateFIRE()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-slate-950 font-bold py-3 px-4 rounded-xl transition shadow-lg shadow-emerald-500/20 mt-4 cursor-pointer text-center block" id="calcBtn">
+                        احسب خطتي الآن
+                    </button>
+                </div>
+            </div>
+
+            <!-- RIGHT: Results & Graph Section (70% width on large screens) -->
+            <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+                
+                <!-- Financial Freedom Metric Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-5 rounded-xl border border-slate-700">
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider" id="cardTargetTitle">رقم الحرية المالية المستهدف</p>
+                        <p class="text-2xl md:text-3xl font-bold text-emerald-400 mt-2" id="resTargetFund">$0</p>
+                        <p class="text-xs text-slate-400 mt-1" id="cardTargetSub">المبلغ الكافي لتعيش من عوائده للأبد</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-5 rounded-xl border border-slate-700">
+                        <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider" id="cardTimeTitle">العمر المتوقع عند التقاعد</p>
+                        <p class="text-2xl md:text-3xl font-bold text-teal-400 mt-2" id="resAge">0 <span class="text-sm font-normal text-slate-400" id="unitYears">سنة</span></p>
+                        <p class="text-xs text-slate-400 mt-1" id="cardTimeSub">تحتاج إلى <span id="resDuration">0</span> سنة للوصول</p>
+                    </div>
+                </div>
+
+                <!-- Chart Container -->
+                <div class="bg-slate-800/30 border border-slate-700/60 rounded-2xl p-4 md:p-6 min-h-[300px] flex flex-col justify-between">
+                    <h3 class="text-sm font-semibold text-slate-300 mb-4" id="chartTitle">نمو ثروتك التراكمي مقابل الهدف</h3>
+                    <div class="relative w-full h-64">
+                        <canvas id="fireChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Viral Loop Section (Viral Share) -->
+                <div class="flex justify-between items-center p-3 bg-slate-800/80 rounded-xl border border-slate-700 text-sm">
+                    <span class="text-slate-400" id="viralText">هل أعجبتك خطتك؟ شاركها وألهم أصدقاءك!</span>
+                    <button onclick="sharePlan()" class="bg-slate-700 hover:bg-slate-600 text-white font-semibold px-4 py-1.5 rounded-lg transition cursor-pointer" id="viralBtn">𝕏 شارك النتيجة</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Upsell Digital Product / المنتج الرقمي لربح الـ 10K (Passive Income Source 2) -->
+        <section class="mt-16 bg-gradient-to-b from-slate-800/50 to-slate-900 border border-teal-500/30 rounded-3xl p-6 md:p-10 text-center max-w-4xl mx-auto shadow-2xl relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-teal-500/10 rounded-full blur-2xl"></div>
+            <span class="bg-teal-500/15 text-teal-400 border border-teal-500/30 text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider mb-4 inline-block" id="upsellBadge">مُسرّع الحرية المالية</span>
+            <h3 class="text-2xl md:text-3xl font-bold text-white mb-4" id="upsellTitle">حمّل لوحة القيادة المالية الاحترافية الجاهزة (Excel & Notion)</h3>
+            <p class="text-slate-400 max-w-2xl mx-auto mb-6 text-sm md:text-base" id="upsellDesc">أداة الحاسبة تعطيك الهدف فقط، لكن هذا القالب الجاهز صُمم ليتتبع ميزانيتك اليومية، مدخراتك، وصافي ثروتك تلقائياً للوصول لهدفك أسرع بـ 3 سنوات كاملة.</p>
+            <!-- استبدل الرابط برابط الدفع التلقائي الخاص بك مثل Stripe checkout -->
+            <a href="https://your-stripe-checkout-link.com" target="_blank" class="bg-gradient-to-r from-teal-400 to-emerald-400 hover:from-teal-500 hover:to-emerald-500 text-slate-950 font-bold py-3.5 px-8 rounded-xl transition shadow-xl shadow-teal-500/10 text-base inline-block cursor-pointer" id="upsellBtn">امتلك القالب الآن بـ $29 فقط</a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 mt-20 py-6 text-center text-xs text-slate-500">
+        <p>© 2026 FIRE⚡Calc. All rights reserved. <span id="footerText">الحسابات مبنية على نماذج رياضية تقديرية وقاعدة الـ 4% العالمية للتقاعد.</span></p>
+    </footer>
+
+    <!-- Logic Script (No-Backend Pure JavaScript) -->
+    <script>
+        let currentLang = 'ar';
+        let fireChartInstance = null;
+
+        const translations = {
+            ar: {
+                dir: 'rtl',
+                langBtn: 'English',
+                heroTitle: 'متى ستصل إلى الحرية المالية وتترك وظيفتك؟',
+                heroSub: 'أدخل أرقامك الحالية لمعرفة تاريخ تقاعدك الدقيق ورقم ثروتك المستهدف بناءً على قاعدة الـ 4% العالمية.',
+                sponsorTag: 'موصى به',
+                sponsorText: 'استثمر فوائضك المالية في منصات مرخّصة لتحقيق عوائد تراكمية أسرع.',
+                sponsorBtn: 'ابدأ الاستثمار الآن',
+                inputHeader: 'بياناتك المالية',
+                lblAge: 'العمر الحالي (سنة)',
+                lblSavings: 'الادخار أو الاستثمار الشهري ($)',
+                lblNetworth: 'حجم مدخراتك/استثماراتك الحالية ($)',
+                lblExpenses: 'مصاريفك الشهرية المتوقعة عند الحرية ($)',
+                lblRoi: 'العائد السنوي المتوقع من الاستثمار (%)',
+                calcBtn: 'احسب خطتي الآن',
+                cardTargetTitle: 'رقم الحرية المالية المستهدف',
+                cardTargetSub: 'المبلغ الكافي لتعيش من عوائده للأبد',
+                cardTimeTitle: 'العمر المتوقع عند التقاعد',
+                cardTimeSub: 'تحتاج إلى {years} سنة للوصول',
+                unitYears: 'سنة',
+                chartTitle: 'نمو ثروتك التراكمي مقابل الهدف',
+                viralText: 'هل أعجبتك خطتك؟ شاركها وألهم أصدقاءك!',
+                viralBtn: '𝕏 شارك النتيجة',
+                upsellBadge: 'مُسرّع الحرية المالية',
+                upsellTitle: 'حمّل لوحة القيادة المالية الاحترافية الجاهزة (Excel & Notion)',
+                upsellDesc: 'أداة الحاسبة تعطيك الهدف فقط، لكن هذا القالب الجاهز صُمم ليتتبع ميزانيتك اليومية، مدخراتك، وصافي ثروتك تلقائياً للوصول لهدفك أسرع بـ 3 سنوات كاملة.',
+                upsellBtn: 'امتلك القالب الآن بـ $29 فقط',
+                footerText: 'الحسابات مبنية على نماذج رياضية تقديرية وقاعدة الـ 4% العالمية للتقاعد.',
+                chartLabelNet: 'صافي الثروة المتوقع',
+                chartLabelTarget: 'الرقم المستهدف',
+                never: 'أكثر من 50 سنة أو مستحيل بالأرقام الحالية'
+            },
+            en: {
+                dir: 'ltr',
+                langBtn: 'العربية',
+                heroTitle: 'When Will You Achieve Financial Freedom & Quit Your Job?',
+                heroSub: 'Enter your current numbers to discover your precise retirement date and target net worth based on the global 4% rule.',
+                sponsorTag: 'RECOMMENDED',
+                sponsorText: 'Invest your surplus capital in regulated platforms to compound your wealth faster.',
+                sponsorBtn: 'Start Investing Now',
+                inputHeader: 'Your Financial Metrics',
+                lblAge: 'Current Age (Years)',
+                lblSavings: 'Monthly Savings / Investment ($)',
+                lblNetworth: 'Current Net Worth ($)',
+                lblExpenses: 'Expected Monthly Expenses in Freedom ($)',
+                lblRoi: 'Expected Annual ROI (%)',
+                calcBtn: 'Calculate My Plan Now',
+                cardTargetTitle: 'Target Financial Freedom Number',
+                cardTargetSub: 'The buffer needed to live off compounding forever',
+                cardTimeTitle: 'Expected Retirement Age',
+                cardTimeSub: 'You need {years} years to reach it',
+                unitYears: 'Years old',
+                chartTitle: 'Your Cumulative Net Worth Growth vs Target',
+                viralText: 'Like your plan? Share it and inspire others!',
+                viralBtn: '𝕏 Share Result',
+                upsellBadge: 'FINANCIAL FREEDOM ACCELERATOR',
+                upsellTitle: 'Download the Ultimate Financial Dashboard (Excel & Notion)',
+                upsellDesc: 'The calculator gives you the goal. This pre-built automated sheet tracks daily budget, investments, and net worth to hit your target 3 years faster.',
+                upsellBtn: 'Get the Template Now for $29',
+                footerText: 'Calculations are mathematical estimations based on the global 4% safe withdrawal rate rule.',
+                chartLabelNet: 'Projected Net Worth',
+                chartLabelTarget: 'Target Number',
+                never: '50+ years or impossible with current inputs'
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            const t = translations[currentLang];
+            
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = t.dir;
+            document.body.className = `bg-slate-900 text-slate-100 min-h-screen lang-${currentLang}`;
+            
+            document.getElementById('langToggle').innerText = t.langBtn;
+            document.getElementById('heroTitle').innerText = t.heroTitle;
+            document.getElementById('heroSub').innerText = t.heroSub;
+            document.getElementById('sponsorTag').innerText = t.sponsorTag;
+            document.getElementById('sponsorText').innerText = t.sponsorText;
+            document.getElementById('sponsorBtn').innerText = t.sponsorBtn;
+            document.getElementById('inputHeader').innerText = t.inputHeader;
+            document.getElementById('lblAge').innerText = t.lblAge;
+            document.getElementById('lblSavings').innerText = t.lblSavings;
+            document.getElementById('lblNetworth').innerText = t.lblNetworth;
+            document.getElementById('lblExpenses').innerText = t.lblExpenses;
+            document.getElementById('lblRoi').innerText = t.lblRoi;
+            document.getElementById('calcBtn').innerText = t.calcBtn;
+            document.getElementById('cardTargetTitle').innerText = t.cardTargetTitle;
+            document.getElementById('cardTargetSub').innerText = t.cardTargetSub;
+            document.getElementById('cardTimeTitle').innerText = t.cardTimeTitle;
+            document.getElementById('unitYears').innerText = t.unitYears;
+            document.getElementById('chartTitle').innerText = t.chartTitle;
+            document.getElementById('viralText').innerText = t.viralText;
+            document.getElementById('viralBtn').innerText = t.viralBtn;
+            document.getElementById('upsellBadge').innerText = t.upsellBadge;
+            document.getElementById('upsellTitle').innerText = t.upsellTitle;
+            document.getElementById('upsellDesc').innerText = t.upsellDesc;
+            document.getElementById('upsellBtn').innerText = t.upsellBtn;
+            document.getElementById('footerText').innerText = t.footerText;
+
+            calculateFIRE();
+        }
+
+        function calculateFIRE() {
+            const age = parseInt(document.getElementById('inpAge').value) || 0;
+            const monthlySavings = parseInt(document.getElementById('inpSavings').value) || 0;
+            let currentNetWorth = parseInt(document.getElementById('inpNetworth').value) || 0;
+            const annualExpenses = (parseInt(document.getElementById('inpExpenses').value) || 0) * 12;
+            const roi = (parseFloat(document.getElementById('inpRoi').value) || 0) / 100;
+
+            // قاعدة 4%: المبلغ المستهدف = المصاريف السنوية * 25
+            const targetFund = annualExpenses * 25;
+            document.getElementById('resTargetFund').innerText = '$' + targetFund.toLocaleString();
+
+            let years = 0;
+            let netWorthArray = [currentNetWorth];
+            let labelsArray = [age];
+            let targetArray = [targetFund];
+
+            const monthlyRoi = roi / 12;
+            const maxYears = 50; 
+
+            while (currentNetWorth < targetFund && years < maxYears) {
+                for (let m = 0; m < 12; m++) {
+                    currentNetWorth = (currentNetWorth + monthlySavings) * (1 + monthlyRoi);
+                }
+                years++;
+                netWorthArray.push(Math.round(currentNetWorth));
+                labelsArray.push(age + years);
+                targetArray.push(targetFund);
+            }
+
+            const t = translations[currentLang];
+            if (years >= maxYears) {
+                document.getElementById('resAge').innerText = currentLang === 'ar' ? 'غير ممكن حالياً' : 'N/A';
+                document.getElementById('cardTimeSub').innerText = t.never;
+            } else {
+                document.getElementById('resAge').innerHTML = `${age + years} <span class="text-sm font-normal text-slate-400" id="unitYears">${t.unitYears}</span>`;
+                document.getElementById('cardTimeSub').innerHTML = t.cardTimeSub.replace('{years}', years);
+            }
+
+            updateChart(labelsArray, netWorthArray, targetArray);
+        }
+
+        function updateChart(labels, dataNetWorth, dataTarget) {
+            const ctx = document.getElementById('fireChart').getContext('2d');
+            const t = translations[currentLang];
+
+            if (fireChartInstance) {
+                fireChartInstance.destroy();
+            }
+
+            fireChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: t.chartLabelNet,
+                            data: dataNetWorth,
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            fill: true,
+                            tension: 0.3
+                        },
+                        {
+                            label: t.chartLabelTarget,
+                            data: dataTarget,
+                            borderColor: '#ef4444',
+                            borderDash: [6, 6],
+                            pointRadius: 0,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } },
+                        y: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#f1f5f9' } }
+                    }
+                }
+            });
+        }
+
+        function sharePlan() {
+            const ageText = document.getElementById('resAge').innerText;
+            const targetText = document.getElementById('resTargetFund').innerText;
+            const shareText = currentLang === 'ar' 
+                ? `لقد حسبت خطتي للحرية المالية! سأصل لهدفي برقم ثروة ${targetText}. احسب خطتك الآن مجاناً عبر هذا الرابط 👇`
+                : `Just calculated my Financial Freedom plan! Hitting my retirement goal with ${targetText}. Check yours for free now 👇`;
+            
+            const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(window.location.href)}`;
+            window.open(shareUrl, '_blank');
+        }
+
+        // تشغيل الحاسبة تلقائياً عند فتح الموقع لأول مرة بناءً على القيم الافتراضية
+        window.onload = function() {
+            calculateFIRE();
+        };
+    </script>
+</body>
+</html>
